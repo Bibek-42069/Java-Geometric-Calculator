@@ -78,14 +78,10 @@ public class Point {
 
     public void dilate(int scaleFactor, boolean change){
         Point pointFromOrigin = origin.getPointFromOrigin(this);
-
-        int xNew = pointFromOrigin.yPos * scaleFactor;
-        int yNew = pointFromOrigin.xPos * scaleFactor;
-
+        int xNew = pointFromOrigin.xPos * scaleFactor;
+        int yNew = pointFromOrigin.yPos * scaleFactor;
         Point newPoint = new Point(xNew,yNew);
-
         Point pointFromRealOrigin = origin.returnPointToBefore(newPoint);
-
         System.out.printf("[D] Dilation : (%d,%d) -> (%d,%d) %n", this.xPos, this.yPos, pointFromRealOrigin.getX(), pointFromRealOrigin.getY());
 
         if(change){

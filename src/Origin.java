@@ -24,13 +24,16 @@ public class Origin {
         int x = oldPoint.getX();
         int y = oldPoint.getY();
         Point newPoint = new Point(x - this.xPos, y - this.yPos);
+        newPoint.printCords();
         return newPoint;
     }
 
     public Point returnPointToBefore(Point newPoint){
         int x = newPoint.getX();
         int y = newPoint.getY();
+
         Point oldPoint = new Point(x - (-this.xPos), y - (-this.yPos));
+        oldPoint.printCords();
         return oldPoint;
     }
 
