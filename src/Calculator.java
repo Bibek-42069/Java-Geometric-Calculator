@@ -1,36 +1,32 @@
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Calculator {
 
-    private Point getOrigin(){
+    // used for getting origin and translation
+    private Point getPoint(int oX, int oY){
+        Point origin = new Point(oX,oY);
         Scanner uInput = new Scanner(System.in);
-        System.out.print("[?] Origin X : ");
+        System.out.print("[?] X : ");
         int originX = Integer.parseInt(uInput.next());
-        System.out.print("[?] Origin Y : ");
+        System.out.print("[?] Y : ");
         int originY = Integer.parseInt(uInput.next());
-        Point origin = new Point(originX,originY);
-        return origin;
+        Point point = new Point(originX,originY,origin);
+        return point;
     }
 
     private ArrayList<Point> getPoints(Point origin){
         String currentChoice = "";
+
         System.out.println("");
         System.out.println("[I] Getting Points ");
+
         Scanner uInput = new Scanner(System.in);
         ArrayList<Point> points = new ArrayList<Point>();
 
         while(!currentChoice.equalsIgnoreCase("y")){
-            System.out.print("[?] Point X : ");
-            int x = Integer.parseInt(uInput.next());
-            System.out.print("[?] Origin Y : ");
-            int y = Integer.parseInt(uInput.next());
-
-            Point newPoint = new Point(x,y,origin);
-
+            Point newPoint = getPoint(origin.getX(),origin.getY());
             points.add(newPoint);
-
             System.out.print("[?] Exit (y/n) : ");
             currentChoice = uInput.next();
         }
@@ -42,7 +38,8 @@ public class Calculator {
         Scanner uInput = new Scanner(System.in);
         System.out.print("[?] Scale Factor : ");
         int scale = Integer.parseInt(uInput.next());
-        Point origin = getOrigin();
+
+        Point origin = getPoint(0,0);
         ArrayList<Point> points = getPoints(origin);
 
         System.out.println("");
@@ -54,7 +51,12 @@ public class Calculator {
     }
 
     public void translate(){
+        Point translation = getPoint(0,0);
+        ArrayList<Point> points = getPoints(new Point(0,0));
 
+        for (int counter = 0; counter < points.size(); counter++) {
+            points.get(counter).translate(translation.getX(), translation.getY(), false);
+        }
     }
 
 }

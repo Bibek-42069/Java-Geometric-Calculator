@@ -3,12 +3,6 @@ public class Point {
     private int yPos;
     private Origin origin;
 
-    public Point(){
-        this.xPos = 0;
-        this.yPos = 0;
-        this.origin = new Origin(0,0);
-    }
-
     public Point(int xPos, int yPos){
         this.xPos = xPos;
         this.yPos = yPos;
